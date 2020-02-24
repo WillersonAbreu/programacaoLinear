@@ -1,22 +1,17 @@
-const avalia = (solucaoInicial, matrizPreco, produtos) => {
-  let valor = 0;
+const { solucaoInicial } = require('./SolucaoInicial');
+const { avalia } = require('./Avalia');
 
-  let i = 0;
-  console.log(solucaoInicial);
-  // while (i < produtos) {
-  //   if (solucaoInicial[i] === 0) {
-  //     valor += matrizPreco[solucaoInicial[i]][i];
-  //   }
-  //   i++;
-  // }
+// const avalia = (solucaoInicial, matrizPreco, produtos) => {
+//   let valor = 0;
 
-  // for (let i = 0; i < solucaoInicial.length; i++) {
-  //   if (solucaoInicial[i] === 0) {
-  //     valor += matrizPreco[solucaoInicial[i]][i];
-  //   }
-  // }
-  return valor;
-};
+//   Array.from(solucaoInicial).map((item, index) => {
+//     if (item !== null || item !== undefined) {
+//       valor += matrizPreco[solucaoInicial[index]][index];
+//     }
+//   });
+
+//   return valor;
+// };
 
 const temperaInicial = (MAX, matrizPreco, produtos, lojas) => {
   let soma = 0;
@@ -75,7 +70,7 @@ const temperaSimulada = (
       produtos,
       lojas
     );
-    console.log(`Vaor de proximo: ${proximo}`);
+    console.log(`Valor de proximo: ${proximo}`);
     const vp = avalia(proximo, matrizPreco, produtos);
     console.log(`Valor de vp: ${vp}`);
 
@@ -87,7 +82,7 @@ const temperaSimulada = (
     } else {
       const ale = Math.round(Math.random());
       console.log(`Aleatorio : ${ale}`);
-      const aux = Math.exp(delta / tempera);
+      const aux = Math.exp(delta / valor);
 
       if (ale <= aux) {
         atual = proximo;
@@ -95,7 +90,7 @@ const temperaSimulada = (
       }
     }
 
-    let tempera = tempera * frequencia;
+    let tempera = valor * frequencia;
     console.log(`Tempera: ${tempera}`);
     t += 1;
   }
@@ -139,61 +134,14 @@ const sucessor = (atual, va, matrizPreco, MAX, produtos, lojas) => {
   return sucessorMelhor, valorMelhor;
 };
 
-const solucaoInicial = (precos, produtos, lojas, MAX) => {
-  let S = [];
-  let valor = 0;
-
-  for (let i = 0; i < produtos; i++) {
-    S.push(0);
-  }
-
-  let y = 0;
-  let x = 0;
-
-  while (valor < MAX) {
-    x = Math.floor(Math.random() * lojas) + 1;
-    y = Math.floor(Math.random() * produtos) + 1;
-
-    // Prevent try to access undefined index from array
-    x === 5 ? (x = x - 1) : x;
-
-    S[y] = x;
-
-    valor += precos[x][y];
-  }
-
-  S[y] = 0;
-
-  return S;
-};
-
 const Main = () => {
-  const matrizPreco = [
-    [4, 31, 32, 31, 44, 44, 20, 39, 28, 47],
-    [5, 26, 40, 28, 46, 39, 18, 40, 19, 32],
-    [3, 25, 36, 33, 50, 45, 17, 38, 23, 36],
-    [4, 39, 36, 27, 40, 40, 19, 36, 16, 48],
-    [3, 21, 36, 32, 42, 42, 16, 37, 14, 31]
-  ];
+  const turmas = [20, 15, 35, 40];
+  const salas = [25, 15, 35, 15, 19, 22, 40, 18, 50, 60];
 
-  let produtos = 10; // Nº de produtos para ser vendidos
-  let lojas = 5; // Nº de lojas
-  let MAX = 200; // Valor máximo que pode ser gasto
+  const solIni = solucaoInicial(turmas, salas);
+  const valorAvalia = avalia(solIni);
 
-  const solIni = solucaoInicial(matrizPreco, produtos, lojas, MAX);
-
-  const resAvalia = avalia(solIni, matrizPreco, produtos);
-
-  const valor = temperaInicial(MAX, matrizPreco, produtos, lojas);
-
-  const tempSimulada = temperaSimulada(
-    solIni,
-    valor,
-    matrizPreco,
-    MAX,
-    produtos,
-    lojas
-  );
+  console.log('Avalia', valorAvalia);
 };
 
 Main();
