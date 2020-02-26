@@ -5,7 +5,7 @@ module.exports = {
 
     solucaoInicial.map(sala => {
       console.log(
-        'sala',
+        'Ssala',
         sala,
         'Abs',
         Math.abs(sala[0] - sala[1]),
