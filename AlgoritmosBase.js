@@ -1,18 +1,3 @@
-const { solucaoInicial } = require('./SolucaoInicial');
-const { avalia } = require('./Avalia');
-
-// const avalia = (solucaoInicial, matrizPreco, produtos) => {
-//   let valor = 0;
-
-//   Array.from(solucaoInicial).map((item, index) => {
-//     if (item !== null || item !== undefined) {
-//       valor += matrizPreco[solucaoInicial[index]][index];
-//     }
-//   });
-
-//   return valor;
-// };
-
 const temperaInicial = (MAX, matrizPreco, produtos, lojas) => {
   let soma = 0;
   let count = 0;
@@ -133,38 +118,3 @@ const sucessor = (atual, va, matrizPreco, MAX, produtos, lojas) => {
 
   return sucessorMelhor, valorMelhor;
 };
-
-function geraTurma(tamanho, limite, start){
-   if(!start) start = 0;
-   
-   const turma = [];
-   for(let i = 0; i < tamanho; i++){
-      const alunos = start + Math.ceil(Math.random() * (limite - start));
-      turma.push(alunos);
-   } 
-   return turma;
-}
-
-function geraSala(tamanho, limite, start){
-  if(!start) start = 0;
-   
-  const sala = [];
-  for(let i = 0; i < tamanho; i++){
-     const capacidade = start + Math.ceil(Math.random() * (limite - start));
-     sala.push(capacidade);
-  } 
-  return sala;
-}
-
-const Main = () => {
-
-  const turmas = geraTurma(4, 40, 15);
-  const salas = geraSala(10, 60, 15);
-
-  const solIni = solucaoInicial(turmas, salas);
-  const valorAvalia = avalia(solIni);
-  console.log('Solução Inicial', solIni);
-  console.log('Avalia', valorAvalia);
-};
-
-Main();

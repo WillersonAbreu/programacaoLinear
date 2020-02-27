@@ -5,11 +5,11 @@ module.exports = {
     const valorPI = 0.8;
     const resultados = [];
     solucaoInicial.map(sala => {
-      resultados.push( sala[1] / sala[0])
+      resultados.push(sala[1] / sala[0]);
     });
-    resultados.map(result =>{
-     valorAvalia += Math.abs(result - valorPI);
-    })
+    resultados.map(result => {
+      valorAvalia += Math.abs(result - valorPI);
+    });
     return valorAvalia;
   }
 };
