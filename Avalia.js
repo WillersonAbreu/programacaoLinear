@@ -2,19 +2,14 @@
 module.exports = {
   avalia: solucaoInicial => {
     let valorAvalia = 0;
-
+    const valorPI = 0.8;
+    const resultados = [];
     solucaoInicial.map(sala => {
-      console.log(
-        'Ssala',
-        sala,
-        'Abs',
-        Math.abs(sala[0] - sala[1]),
-        'Subt',
-        sala[0] - sala[1]
-      );
-      valorAvalia += Math.abs(sala[0] - sala[1]);
+      resultados.push( sala[1] / sala[0])
     });
-
+    resultados.map(result =>{
+     valorAvalia += Math.abs(result - valorPI);
+    })
     return valorAvalia;
   }
 };

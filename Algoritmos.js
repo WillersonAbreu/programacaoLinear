@@ -157,14 +157,13 @@ function geraSala(tamanho, limite, start){
 }
 
 const Main = () => {
-  // const turmas = [20, 15, 35, 40];
+
   const turmas = geraTurma(4, 40, 15);
-  // const salas = [25, 15, 35, 15, 19, 22, 40, 18, 50, 60];
   const salas = geraSala(10, 60, 15);
 
   const solIni = solucaoInicial(turmas, salas);
   const valorAvalia = avalia(solIni);
-
+  console.log('Solução Inicial', solIni);
   console.log('Avalia', valorAvalia);
 };
 
