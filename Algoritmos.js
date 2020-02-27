@@ -134,9 +134,33 @@ const sucessor = (atual, va, matrizPreco, MAX, produtos, lojas) => {
   return sucessorMelhor, valorMelhor;
 };
 
+function geraTurma(tamanho, limite, start){
+   if(!start) start = 0;
+   
+   const turma = [];
+   for(let i = 0; i < tamanho; i++){
+      const alunos = start + Math.ceil(Math.random() * (limite - start));
+      turma.push(alunos);
+   } 
+   return turma;
+}
+
+function geraSala(tamanho, limite, start){
+  if(!start) start = 0;
+   
+  const sala = [];
+  for(let i = 0; i < tamanho; i++){
+     const capacidade = start + Math.ceil(Math.random() * (limite - start));
+     sala.push(capacidade);
+  } 
+  return sala;
+}
+
 const Main = () => {
-  const turmas = [20, 15, 35, 40];
-  const salas = [25, 15, 35, 15, 19, 22, 40, 18, 50, 60];
+  // const turmas = [20, 15, 35, 40];
+  const turmas = geraTurma(4, 40, 15);
+  // const salas = [25, 15, 35, 15, 19, 22, 40, 18, 50, 60];
+  const salas = geraSala(10, 60, 15);
 
   const solIni = solucaoInicial(turmas, salas);
   const valorAvalia = avalia(solIni);
