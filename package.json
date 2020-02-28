@@ -1,0 +1,14 @@
+{
+  "name": "pl",
+  "version": "1.0.0",
+  "main": "Main.js",
+  "repository": "git@github.com:WillersonAbreu/programacaoLinear.git",
+  "author": "Willerson Abreu <willersonabreu@hotmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "start": "node -r esm index.js"
+  },
+  "dependencies": {
+    "esm": "^3.2.25"
+  }
+}

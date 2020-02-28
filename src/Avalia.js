@@ -1,6 +1,6 @@
 // Rotina para avaliar a porcentagem da aucpação dos alunos nas salas em que foram alocados
-module.exports = {
-  avalia: solucaoInicial => {
+class Avalia {
+  avalia(solucaoInicial) {
     let valorAvalia = 0;
     const valorPI = 0.8;
     const resultados = [];
@@ -12,4 +12,6 @@ module.exports = {
     });
     return valorAvalia;
   }
-};
+}
+
+export default new Avalia();
