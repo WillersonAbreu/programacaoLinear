@@ -26,9 +26,15 @@ class solucaoInicial {
     let turmasAlocadas = [];
     let counter = 0;
 
-    const turmas = this.geraTurma(4, 40, 15);
-    const salas = this.geraSala(10, 60, 15);
-
+    const turmas = this.geraTurma(4, 40, 15).sort(function(a, b) {
+      return b - a;
+    });
+    console.log(turmas);
+   
+    const salas = this.geraSala(10, 60, 15).sort(function(a, b) {
+      return b - a;
+    });
+    console.log(salas);
     while (counter < turmas.length) {
       let salaAleatoria =
         salas[Math.floor(Math.random() * salas.length - 1) + 1];
