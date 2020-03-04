@@ -3,22 +3,27 @@ import sucessorClass from './Sucessora';
 
 class subidaDeEncostaClass {
   subidaDeEncosta(solucaoInicial, valorAvalia) {
-    const atual = solucaoInicial;
-    const va = valorAvalia;
+    let atual = solucaoInicial;
+    let va = valorAvalia;
+    let subidaDeEncosta = [];
 
     let flag = true;
     while (flag) {
       let novo = sucessorClass.sucessor(atual);
       let vn = avaliaClass.avalia(novo);
 
-      if (vn < va) {
-        atual = novo;
-        va = vn;
+      if (!vn) {
+        continue;
       } else {
-        flag = false;
+        if (vn < va) {
+          subidaDeEncosta.push(novo);
+          subidaDeEncosta.push(vn);
+        } else {
+          flag = false;
+        }
       }
     }
-    return atual;
+    return [subidaDeEncosta, va];
   }
 }
 
