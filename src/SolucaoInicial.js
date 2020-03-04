@@ -49,7 +49,7 @@ class solucaoInicial {
 
     counter = 0;
 
-    return turmasAlocadas;
+    return [turmasAlocadas, salas];
   }
 }
 

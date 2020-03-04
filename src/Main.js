@@ -1,5 +1,7 @@
 import classSolucaoInicial from './SolucaoInicial';
 import classAvalia from './Avalia';
+import classSubidaDeEncosta from './SubidaDeEncosta';
+import classSucessor from './Sucessora';
 
 class Main {
   constructor() {
@@ -9,11 +11,18 @@ class Main {
   runAlgorithms() {
     // Algoritmos
     const solIni = classSolucaoInicial.solucaoInicial();
-    const valorAvalia = classAvalia.avalia(solIni);
+    const valorAvalia = classAvalia.avalia(solIni[0]);
+
+    const Sucessora = classSucessor.sucessor(solIni);
+    // const subidaDeEncosta = classSubidaDeEncosta.subidaDeEncosta(
+    //   solIni,
+    //   valorAvalia
+    // );
 
     // Printando os resultados na ordem de chamada das funções
-    console.log('Solução Inicial', solIni);
+    console.log('Solução Inicial', solIni[0]);
     console.log('Avalia', valorAvalia);
+    console.log('Sucessora', Sucessora);
   }
 }
 
