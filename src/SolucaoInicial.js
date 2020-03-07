@@ -23,6 +23,7 @@ class solucaoInicial {
   }
 
   solucaoInicial() {
+    let resposta = [];
     let turmasAlocadas = [];
     let counter = 0;
 
@@ -53,7 +54,9 @@ class solucaoInicial {
     });
 
     counter = 0;
-    return [turmasAlocadas, salas];
+    resposta['turmasAlocadas'] = turmasAlocadas;
+    resposta['salasRemanescentes'] = salas;
+    return resposta;
   }
 }
 

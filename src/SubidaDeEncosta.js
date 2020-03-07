@@ -5,25 +5,33 @@ class subidaDeEncostaClass {
   subidaDeEncosta(solucaoInicial, valorAvalia) {
     let atual = solucaoInicial;
     let va = valorAvalia;
-    let subidaDeEncosta = [];
+    let novo = [];
+    let vn = 0;
+
+    // console.log('Solução inicial', atual['turmasAlocadas']);
+    // console.log('Valor avalia', valorAvalia);
 
     let flag = true;
     while (flag) {
-      let novo = sucessorClass.sucessor(atual);
-      let vn = avaliaClass.avalia(novo);
+      novo = sucessorClass.sucessor(atual);
+      // console.log(novo['turmasAlocadas']);
+      vn = avaliaClass.avalia(novo['turmasAlocadas']);
 
-      if (!vn) {
-        continue;
+      if (vn < va) {
+        atual = novo;
+        // console.log('Sucessor', atual['turmasAlocadas']);
+        va = vn;
+        // console.log('Avalia sucessor', va);
       } else {
-        if (vn < va) {
-          subidaDeEncosta.push(novo);
-          subidaDeEncosta.push(vn);
-        } else {
-          flag = false;
-        }
+        // console.log('Sucessor else', atual['turmasAlocadas']);
+        // console.log('Avalia else', va);
+        flag = false;
       }
     }
-    return [subidaDeEncosta, va];
+
+    atual['avaliaSubidaDeEncosta'] = va;
+    // console.log(atual);
+    return atual;
   }
 }
 

@@ -1,24 +1,26 @@
 class sucessorClass {
   sucessor(atual) {
+    let iteration = 10;
     let counter = 0;
-    const salas = [];
-    const turmas = [];
+    let atualCopy = atual;
+    let salas = [];
+    let turmas = [];
+    let sucessores = [];
 
-    const sucessores = [];
+    let resposta = [];
 
-    if (atual[0]) {
-      // Separa salas e turmas da solução atual
-      atual[0].map(turmaAlocada => {
-        salas.push(turmaAlocada[0]);
-        turmas.push(turmaAlocada[1]);
-      });
+    // Separa salas e turmas da solução atual
+    atual['turmasAlocadas'].map(t => {
+      salas.push(t[0]);
+      turmas.push(t[1]);
+    });
 
-      // Concatena os arrays das salas que não foram utilizadas com o array das que foram
-      const todasAsSalas = salas.concat(atual[1]);
+    // Salas que nâo foram usadas na solução
+    let salasRemanescentes = atual['salasRemanescentes'];
 
+    for (let i = 0; i < iteration; i++) {
       // Gera uma nova combinação de salas e turmas
-      let flag = true;
-      while (counter < todasAsSalas.length) {
+      while (counter < salas.length + salasRemanescentes.length) {
         let salaAleatoria =
           salas[Math.floor(Math.random() * salas.length - 1) + 1];
 
@@ -28,34 +30,59 @@ class sucessorClass {
           sucessores.push(salaAleatoria);
           salas.splice(indexSalaAleatoria, 1);
         } else {
-          while (
-            turmas[counter] > salaAleatoria ||
-            salas[counter] === salaAleatoria
-          ) {
+          let index = 0;
+          while (turmas[counter] > salaAleatoria) {
             salaAleatoria =
-              todasAsSalas[
-                Math.floor(Math.random() * todasAsSalas.length - 1) + 1
-              ];
-            indexSalaAleatoria = todasAsSalas.indexOf(salaAleatoria);
+              salas[Math.floor(Math.random() * salas.length - 1) + 1];
+
+            indexSalaAleatoria = salas.indexOf(salaAleatoria);
 
             if (turmas[counter] <= salaAleatoria) {
               sucessores.push(salaAleatoria);
-              todasAsSalas.splice(indexSalaAleatoria, 1);
-            } else {
-              continue;
+              salas.splice(indexSalaAleatoria, 1);
             }
+            index = index + 1;
+            continue;
           }
+          // continue;
+          // salaAleatoria =
+          //   salasRemanescentes[
+          //     Math.floor(Math.random() * salasRemanescentes.length - 1) + 1
+          //   ];
+
+          // indexSalaAleatoria = salasRemanescentes.indexOf(salaAleatoria);
+
+          // if (turmas[counter] <= salaAleatoria) {
+          //   sucessores.push(salaAleatoria);
+          //   salasRemanescentes.splice(indexSalaAleatoria, 1);
+          // }
+
+          // while (turmas[counter] > salaAleatoria) {
+          //   salaAleatoria =
+          //     salasRemanescentes[
+          //       Math.floor(Math.random() * salasRemanescentes.length - 1) + 1
+          //     ];
+
+          //   indexSalaAleatoria = salasRemanescentes.indexOf(salaAleatoria);
+
+          //   if (turmas[counter] <= salaAleatoria) {
+          //     sucessores.push(salaAleatoria);
+          //     salasRemanescentes.splice(indexSalaAleatoria, 1);
+          //   }
+          // }
         }
         counter = counter + 1;
       }
-
-      sucessores.map((sala, index) => {
-        sucessores[index] = [sala, turmas[index]];
-      });
-      return sucessores;
-    } else {
-      return false;
     }
+
+    sucessores.map((sala, index) => {
+      sucessores[index] = [sala, turmas[index]];
+    });
+
+    resposta['turmasAlocadas'] = sucessores;
+    resposta['salasRemanescentes'] = salas.concat(salasRemanescentes);
+
+    return resposta;
   }
 }
 
