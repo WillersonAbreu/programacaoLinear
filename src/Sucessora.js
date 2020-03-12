@@ -1,88 +1,104 @@
 class sucessorClass {
-  sucessor(atual) {
-    let iteration = 10;
-    let counter = 0;
-    let atualCopy = atual;
-    let salas = [];
-    let turmas = [];
-    let sucessores = [];
+  sucessor(atual2) {
+   
+    let changelog = [];
+    let remain = [];
 
-    let resposta = [];
+    let atual = [];
 
-    // Separa salas e turmas da solução atual
-    atual['turmasAlocadas'].map(t => {
-      salas.push(t[0]);
-      turmas.push(t[1]);
-    });
+    atual['turmasAlocadas']     = atual2['turmasAlocadas'].map((arr) => arr.slice());
+    atual['salasRemanescentes'] = [...atual2['salasRemanescentes']];
+   
 
-    // Salas que nâo foram usadas na solução
-    let salasRemanescentes = atual['salasRemanescentes'];
+    for(let i = 0; i < atual['turmasAlocadas'].length; i++) remain.push(i);
 
-    for (let i = 0; i < iteration; i++) {
-      // Gera uma nova combinação de salas e turmas
-      while (counter < salas.length + salasRemanescentes.length) {
-        let salaAleatoria =
-          salas[Math.floor(Math.random() * salas.length - 1) + 1];
+    for(let i = 0; i < atual['turmasAlocadas'].length; i++) {
+      let tryRemanescentes = false;
 
-        let indexSalaAleatoria = salas.indexOf(salaAleatoria);
+      let indexOrg = i;
+      
+      if(changelog.indexOf(indexOrg) !== -1) continue;
 
-        if (turmas[counter] <= salaAleatoria) {
-          sucessores.push(salaAleatoria);
-          salas.splice(indexSalaAleatoria, 1);
-        } else {
-          let index = 0;
-          while (turmas[counter] > salaAleatoria) {
-            salaAleatoria =
-              salas[Math.floor(Math.random() * salas.length - 1) + 1];
 
-            indexSalaAleatoria = salas.indexOf(salaAleatoria);
+      if(atual['turmasAlocadas'].length - changelog.length >= 2) {
 
-            if (turmas[counter] <= salaAleatoria) {
-              sucessores.push(salaAleatoria);
-              salas.splice(indexSalaAleatoria, 1);
+        let indexDest = -1;
+        let notAllwd = [...changelog];
+        
+        do {
+        
+          indexDest = Math.floor(Math.random() * atual['turmasAlocadas'].length - 1) + 1;
+          
+          if(indexOrg == indexDest || notAllwd.indexOf(indexDest) !== -1) continue;
+          else {
+            let turmaOrg  = atual['turmasAlocadas'][indexOrg];
+            let turmaDest = atual['turmasAlocadas'][indexDest];
+            
+            if(turmaOrg[0] >= turmaDest[1] && turmaDest[0] >= turmaOrg[1]) {
+
+              let aux = turmaOrg[0];
+              turmaOrg[0] = turmaDest[0];
+              turmaDest[0] = aux;
+
+              atual['turmasAlocadas'][indexOrg]  = turmaOrg;
+              atual['turmasAlocadas'][indexDest] = turmaDest;
+
+              changelog.push(indexOrg, indexDest);
+              break;
+            } else {
+              
+              notAllwd.push(indexDest);
+              
+              if(atual['turmasAlocadas'].length - notAllwd.length <= 1) {
+                tryRemanescentes = true;
+                break;
+              }
             }
-            index = index + 1;
-            continue;
           }
-          // continue;
-          // salaAleatoria =
-          //   salasRemanescentes[
-          //     Math.floor(Math.random() * salasRemanescentes.length - 1) + 1
-          //   ];
+        } while(indexOrg == indexDest || notAllwd.indexOf(indexDest) !== -1);
+      }
+      else if (atual['turmasAlocadas'].length - changelog.length == 1) {
+        tryRemanescentes = true;
+      }
+      else break;
 
-          // indexSalaAleatoria = salasRemanescentes.indexOf(salaAleatoria);
+      if(tryRemanescentes) {
+        let notAllwd = [];
+        let indexDest = -1;
 
-          // if (turmas[counter] <= salaAleatoria) {
-          //   sucessores.push(salaAleatoria);
-          //   salasRemanescentes.splice(indexSalaAleatoria, 1);
-          // }
+        do {
+          indexDest = Math.floor(Math.random() * atual['salasRemanescentes'].length - 1) + 1;
 
-          // while (turmas[counter] > salaAleatoria) {
-          //   salaAleatoria =
-          //     salasRemanescentes[
-          //       Math.floor(Math.random() * salasRemanescentes.length - 1) + 1
-          //     ];
+          if(notAllwd.indexOf(indexDest) !== -1) continue;
+          else {
+            let turmaOrg  = atual['turmasAlocadas'][indexOrg];
+            let turmaDest = atual['salasRemanescentes'][indexDest];
+            
+            if(turmaDest >= turmaOrg[1]) {
+            
+              let aux = turmaOrg[0];
+              turmaOrg[0] = turmaDest;
+              turmaDest = aux;
 
-          //   indexSalaAleatoria = salasRemanescentes.indexOf(salaAleatoria);
+              atual['turmasAlocadas'][indexOrg]  = turmaOrg;
+              atual['salasRemanescentes'][indexDest] = turmaDest;
 
-          //   if (turmas[counter] <= salaAleatoria) {
-          //     sucessores.push(salaAleatoria);
-          //     salasRemanescentes.splice(indexSalaAleatoria, 1);
-          //   }
-          // }
-        }
-        counter = counter + 1;
+              changelog.push(indexOrg);
+              break;
+            } else {
+             
+              notAllwd.push(indexDest);
+              
+              if(atual['salasRemanescentes'].length - notAllwd.length <= 1) break;
+            }
+          }
+        } while(notAllwd.indexOf(indexDest) !== -1);
       }
     }
+    
 
-    sucessores.map((sala, index) => {
-      sucessores[index] = [sala, turmas[index]];
-    });
-
-    resposta['turmasAlocadas'] = sucessores;
-    resposta['salasRemanescentes'] = salas.concat(salasRemanescentes);
-
-    return resposta;
+  
+    return atual;
   }
 }
 

@@ -1,4 +1,3 @@
-// Rotina para gerar solução inicial
 class solucaoInicial {
   geraTurma(tamanho, limite, start) {
     if (!start) start = 0;

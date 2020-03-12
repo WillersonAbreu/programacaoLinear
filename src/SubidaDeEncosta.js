@@ -3,10 +3,17 @@ import sucessorClass from './Sucessora';
 
 class subidaDeEncostaClass {
   subidaDeEncosta(solucaoInicial, valorAvalia) {
-    let atual = solucaoInicial;
+    
+    // let atual = solucaoInicial;
     let va = valorAvalia;
     let novo = [];
     let vn = 0;
+
+    let atual = [];
+
+    atual['turmasAlocadas']     = solucaoInicial['turmasAlocadas'].map((arr) => arr.slice());
+    atual['salasRemanescentes'] = [...solucaoInicial['salasRemanescentes']];
+
 
     let flag = true;
     while (flag) {
