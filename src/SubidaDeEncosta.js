@@ -11,20 +11,31 @@ class subidaDeEncostaClass {
 
     let atual = [];
 
-    atual['turmasAlocadas']     = solucaoInicial['turmasAlocadas'].map((arr) => arr.slice());
+    atual['turmasAlocadas'] = solucaoInicial['turmasAlocadas'].map((arr) => arr.slice());
     atual['salasRemanescentes'] = [...solucaoInicial['salasRemanescentes']];
 
 
     let flag = true;
+    let t = 0;
+    let tmax = 10;
+
     while (flag) {
       novo = sucessorClass.sucessor(atual);
       vn = avaliaClass.avalia(novo['turmasAlocadas']);
-
       if (vn < va) {
         atual = novo;
         va = vn;
+        t = 0;
+        console.log(t);
+
       } else {
-        flag = false;
+        if (t >= tmax) {
+          flag = false;
+        }else{
+          t++;
+        console.log(t);
+        }
+       
       }
     }
 

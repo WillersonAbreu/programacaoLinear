@@ -3,10 +3,9 @@ class sucessorClass {
    
     let changelog = [];
     let remain = [];
-
     let atual = [];
 
-    atual['turmasAlocadas']     = atual2['turmasAlocadas'].map((arr) => arr.slice());
+    atual['turmasAlocadas'] = atual2['turmasAlocadas'].map((arr) => arr.slice());
     atual['salasRemanescentes'] = [...atual2['salasRemanescentes']];
    
 
@@ -30,6 +29,7 @@ class sucessorClass {
           indexDest = Math.floor(Math.random() * atual['turmasAlocadas'].length - 1) + 1;
           
           if(indexOrg == indexDest || notAllwd.indexOf(indexDest) !== -1) continue;
+          
           else {
             let turmaOrg  = atual['turmasAlocadas'][indexOrg];
             let turmaDest = atual['turmasAlocadas'][indexDest];
@@ -102,4 +102,4 @@ class sucessorClass {
   }
 }
 
-export default new sucessorClass();
+export default new sucessorClass;

@@ -14,4 +14,4 @@ class Avalia {
   }
 }
 
-export default new Avalia();
+export default new Avalia;

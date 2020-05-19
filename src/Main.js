@@ -23,9 +23,7 @@ class Main {
     console.log('Avalia', valorAvalia);
     console.log('Subida de Encosta', subidaDeEncosta['turmasAlocadas']);
     console.log('SE Salas Remanescentes', subidaDeEncosta['salasRemanescentes']);
-    console.log(
-      'Avalia Subida de Encosta',
-      subidaDeEncosta['avaliaSubidaDeEncosta']
+    console.log('Avalia Subida de Encosta', subidaDeEncosta['avaliaSubidaDeEncosta']
     );
   }
 }
