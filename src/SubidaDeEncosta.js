@@ -2,7 +2,7 @@ import avaliaClass from './Avalia';
 import sucessorClass from './Sucessora';
 
 class subidaDeEncostaClass {
-  subidaDeEncosta(solucaoInicial, valorAvalia) {
+  subidaDeEncosta(solucaoInicial, valorAvalia, tmax) {
     
     // let atual = solucaoInicial;
     let va = valorAvalia;
@@ -17,7 +17,7 @@ class subidaDeEncostaClass {
 
     let flag = true;
     let t = 0;
-    let tmax = 10;
+    // let tmax = 10;
 
     while (flag) {
       novo = sucessorClass.sucessor(atual);
@@ -33,7 +33,6 @@ class subidaDeEncostaClass {
           flag = false;
         }else{
           t++;
-        console.log(t);
         }
        
       }
