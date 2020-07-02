@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <link href="solucaoInicial.css" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Todas tabelas</title>
+</head>
+<body>
+    <%- include('partials/nav.ejs'); %>
+    <div class="container">
+
+        <h1>Algoritmos</h1>
+    
+    <table class="table table-hover">
+        <thead class="thead-dark">
+          <tr>
+            <th scope="col">Algoritmo</th>
+            <th scope="col">Sala (Turma)</th>
+            <th scope="col">Sala (Turma)</th>
+            <th scope="col">Sala (Turma)</th>
+            <th scope="col">Sala (Turma)</th>
+            <th scope="col">Salas Remanescentes</th>
+            <th scope="col">Avalia</th>
+
+
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row">Solução Inicial</th>
+            <td><%= t1_solIni[0] %> (<%= t1_solIni[1] %>) </td>
+            <td><%= t2_solIni[0] %> (<%= t2_solIni[1] %>) </td>
+            <td><%= t3_solIni[0] %> (<%= t3_solIni[1] %>) </td>
+            <td><%= t4_solIni[0] %> (<%= t4_solIni[1] %>) </td>
+            <td><%= salasRem_solIni %></td>
+            <td><%= vAvalia_solIni %></td>
+          </tr>
+
+          <tr>
+            <th scope="row">Subida de encosta</th>
+            <td><%= t1_subida[0] %> (<%= t1_subida[1] %>) </td>
+            <td><%= t2_subida[0] %> (<%= t2_subida[1] %>) </td>
+            <td><%= t3_subida[0] %> (<%= t3_subida[1] %>) </td>
+            <td><%= t4_subida[0] %> (<%= t4_subida[1] %>) </td>
+            <td><%= salasRem_subida %></td>
+            <td><%= vAvalia_subida %></td>
+          </tr>
+
+          <tr>
+            <th scope="row">Subida de encosta alterada</th>
+            <td><%= t1_subidaAlter[0] %> (<%= t1_subidaAlter[1] %>) </td>
+            <td><%= t2_subidaAlter[0] %> (<%= t2_subidaAlter[1] %>) </td>
+            <td><%= t3_subidaAlter[0] %> (<%= t3_subidaAlter[1] %>) </td>
+            <td><%= t4_subidaAlter[0] %> (<%= t4_subidaAlter[1] %>) </td>
+            <td><%= salasRem_subidaAlter %></td>
+            <td><%= vAvalia_subidaAlter %></td>
+          </tr>
+
+          <tr>
+            <th scope="row">Tempera Simulada</th>
+            <td><%= t1_tempera[0] %> (<%= t1_tempera[1] %>) </td>
+            <td><%= t2_tempera[0] %> (<%= t2_tempera[1] %>) </td>
+            <td><%= t3_tempera[0] %> (<%= t3_tempera[1] %>) </td>
+            <td><%= t4_tempera[0] %> (<%= t4_tempera[1] %>) </td>
+            <td><%= salasRem_tempera %></td>
+            <td><%= vAvalia_tempera %></td>
+          </tr>
+         
+          
+        </tbody>
+      </table>
+    </div>
+</body>
+</html>

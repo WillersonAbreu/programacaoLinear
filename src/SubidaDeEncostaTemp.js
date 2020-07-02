@@ -14,7 +14,7 @@ class subidaDeEncostaTempClass {
     atual['turmasAlocadas'] = solucaoInicial['turmasAlocadas'].map((arr) => arr.slice());
     atual['salasRemanescentes'] = [...solucaoInicial['salasRemanescentes']];
 
-    let temp = 5000;
+    let temp = 225;
     let ft_red = 0.4; 
 
     let delta = null;
@@ -57,7 +57,7 @@ class subidaDeEncostaTempClass {
         temp = temp * ft_red;
         temp = parseFloat(temp.toFixed(3));
         
-        console.log('temperatura: ', temp);
+        // console.log('temperatura: ', temp);
 
         if(temp <= 0) {
           flag = false;

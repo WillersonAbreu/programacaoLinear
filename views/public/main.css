@@ -1,0 +1,19 @@
+.container {   
+    margin: 0 auto;
+    position: relative; 
+    display: flex;
+
+}
+
+.MainTitle {
+    margin-top: 15vh;
+    margin-left: 25vh;
+    display: flex;
+}
+
+.MainSubtitle {
+    margin-left: 50vh;
+    text-align: center;
+    justify-content: center;
+
+}

@@ -10,6 +10,7 @@ class Avalia {
     resultados.map(result => {
       valorAvalia += Math.abs(result - valorPI);
     });
+    // valorAvalia = valorAvalia.toFixed(5);
     return valorAvalia;
   }
 }

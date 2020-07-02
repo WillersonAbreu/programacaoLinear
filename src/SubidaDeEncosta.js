@@ -17,7 +17,6 @@ class subidaDeEncostaClass {
 
     let flag = true;
     let t = 0;
-    // let tmax = 10;
 
     while (flag) {
       novo = sucessorClass.sucessor(atual);
@@ -26,7 +25,6 @@ class subidaDeEncostaClass {
         atual = novo;
         va = vn;
         t = 0;
-        console.log(t);
 
       } else {
         if (t >= tmax) {
