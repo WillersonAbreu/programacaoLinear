@@ -50,10 +50,8 @@ class Main {
         valorAvalia
     );
     
-    const ag = classAlgoritmoGenetico.algoritmoGenetico(10);
-    
-    // console.log("População inicial: " , pop[0]['turmasAlocadas']);
-    // console.log("População inicial: " , pop[0]['salasRemanescentes']);
+    const ag = classAlgoritmoGenetico.algoritmoGenetico(10, 0.8, 0.2, 0.1, 5);
+
 
     let turminha1 = solIni['turmasAlocadas'][0];
     let turminha2 = solIni['turmasAlocadas'][1];
@@ -74,6 +72,11 @@ class Main {
     let turminhaTempera2 = temperaSimulada['turmasAlocadas'][1];
     let turminhaTempera3 = temperaSimulada['turmasAlocadas'][2];
     let turminhaTempera4 = temperaSimulada['turmasAlocadas'][3];
+
+    let turminhaAG1 = ag['turmasAlocadas'][0];
+    let turminhaAG2 = ag['turmasAlocadas'][1];
+    let turminhaAG3 = ag['turmasAlocadas'][2];
+    let turminhaAG4 = ag['turmasAlocadas'][3];
 
 
     // console.log('Solução Inicial: ', solIni['turmasAlocadas']);
@@ -141,6 +144,15 @@ class Main {
         valorAvalia: temperaSimulada['avaliaSubidaDeEncosta'],});
     });
 
+    app.get('/ag', (req, res) => {
+      res.render('algoritmoGenetico', {turminha1: turminhaAG1,
+        turminha2 : turminhaAG2,
+        turminha3 : turminhaAG3,
+        turminha4 : turminhaAG4,
+        salasRemanescentes:  ag['salasRemanescentes'],
+        valorAvalia: ag['valorAvalia'],});
+    });
+
     app.get('/tables', (req, res) => {
       res.render('tables', {t1_solIni: turminha1,
         t2_solIni: turminha2,
@@ -169,6 +181,13 @@ class Main {
         t4_tempera: turminhaTempera4,
         salasRem_tempera:  temperaSimulada['salasRemanescentes'],
         vAvalia_tempera: temperaSimulada['avaliaSubidaDeEncosta'],
+
+        t1_ag: turminhaAG1,
+        t2_ag: turminhaAG2,
+        t3_ag: turminhaAG3,
+        t4_ag: turminhaAG4,
+        salasRem_ag: ag['salasRemanescentes'],
+        vAvalia_ag: ag['valorAvalia'],
       });
     });
   };
